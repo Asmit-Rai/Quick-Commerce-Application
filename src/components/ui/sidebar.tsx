@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { MotionProps } from "framer-motion";
 
 interface Links {
   label: string;
@@ -71,7 +72,9 @@ export const Sidebar = ({
   );
 };
 
-export const SidebarBody = (props: React.ComponentProps<typeof motion.div>) => {
+
+
+export const SidebarBody = (props: MotionProps & { children?: React.ReactNode }) => {
   return (
     <>
       <DesktopSidebar {...props} />
@@ -84,7 +87,7 @@ export const DesktopSidebar = ({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof motion.div>) => {
+}: MotionProps & { className?: string; children?: React.ReactNode }) => {
   const { open, setOpen, animate } = useSidebar();
   return (
     <motion.div
@@ -107,8 +110,8 @@ export const DesktopSidebar = ({
 export const MobileSidebar = ({
   className,
   children,
-
-}: React.ComponentProps<"div">) => {
+  ...props
+}: MotionProps & { className?: string; children?: React.ReactNode }) => {
   const { open, setOpen } = useSidebar();
   return (
     <>
@@ -137,6 +140,7 @@ export const MobileSidebar = ({
                 "fixed h-full w-full inset-0 p-10 z-[100] flex flex-col justify-between",
                 className
               )}
+              {...props}
             >
               <div
                 className="absolute right-10 top-10 z-50 text-neutral-800 dark:text-neutral-200 cursor-pointer"

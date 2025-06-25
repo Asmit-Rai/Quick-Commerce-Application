@@ -98,39 +98,41 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
   return (
     <div className="min-h-screen bg-[#FFF0ED] flex flex-col md:flex-row w-full">
       <Sidebar open={open} setOpen={setOpen}>
-        <SidebarBody className="justify-between gap-10 sticky top-0 h-full">
-          <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden pb-4">
-            <div className="mt-20 flex flex-col gap-2 ml-2">
-              {links.map((link, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => handleLinkClick(link.page)}
-                  className={cn(
-                    "cursor-pointer rounded-full p-2 transition-colors shadow-lg",
-                    currentPage === link.page
-                      ? "bg-[#F35E44]"
-                      : "bg-[#FEF3F0] hover:[#F35E44]"
-                  )}
-                >
-                  <SidebarLink link={link} />
-                </div>
-              ))}
+        <SidebarBody>
+          <div className="justify-between gap-10 sticky top-0 h-full flex flex-col h-full">
+            <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden pb-4">
+              <div className="mt-20 flex flex-col gap-2 ml-2">
+                {links.map((link, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => handleLinkClick(link.page)}
+                    className={cn(
+                      "cursor-pointer rounded-full p-2 transition-colors shadow-lg",
+                      currentPage === link.page
+                        ? "bg-[#F35E44]"
+                        : "bg-[#FEF3F0] hover:[#F35E44]"
+                    )}
+                  >
+                    <SidebarLink link={link} />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-          <div>
-            <div
-              onClick={onLogout}
-              className="cursor-pointer rounded-full p-2 transition-colors shadow-lg hover:bg-red-100 dark:hover:bg-red-900 rounded-full  transition-colors"
-            >
-              <SidebarLink
-                link={{
-                  label: "Logout",
-                  href: "#",
-                  icon: (
-                    <LogOut className="text-red-600 h-5 w-5  ml-4" />
-                  ),
-                }}
-              />
+            <div>
+              <div
+                onClick={onLogout}
+                className="cursor-pointer rounded-full p-2 transition-colors shadow-lg hover:bg-red-100 dark:hover:bg-red-900 rounded-full  transition-colors"
+              >
+                <SidebarLink
+                  link={{
+                    label: "Logout",
+                    href: "#",
+                    icon: (
+                      <LogOut className="text-red-600 h-5 w-5  ml-4" />
+                    ),
+                  }}
+                />
+              </div>
             </div>
           </div>
         </SidebarBody>
